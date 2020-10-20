@@ -1,8 +1,9 @@
 from rest_framework.views import APIView
 from .models import Club
 from rest_framework.response import Response
-import json
-
+from rest_framework.generics import ListAPIView
+from .models import Society, Sport
+from .serializers import SocietySerializer, SportSerializer
 
 class Clubs(APIView):
     """Get list of all Clubs"""
@@ -30,14 +31,17 @@ class Clubs(APIView):
         return Response(clubs)
 
 
-def Socities(request):
+class Socities(ListAPIView):
     """Get List of all Socities"""
-    pass
+    serializer_class = SocietySerializer
+    queryset = Society.objects.all()
 
 
-def Sports(request):
+class Sports(ListAPIView):
     """Get List of all Sports"""
-    pass
+    queryset = Sport.objects.all()
+    serializer_class = SportSerializer
+
 
 
 def Hostels(request):
@@ -51,11 +55,12 @@ def Events(request):
 
 
 def FoodCourts(request):
+    """Get Lists of all Food Courts"""
     pass
 
 
 def PlacesToVisit(request):
-    pass
+    """Get List of all places to visit nearby NIT Hamirpur"""
 
 
 def Shops(request):

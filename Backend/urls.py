@@ -14,9 +14,9 @@ from .views import (
 
 urlpatterns = [
     path('clubs/', Clubs.as_view()),
-    path('sports/', Sports),
+    path('sports/', Sports.as_view()),
     path('shops/', Shops),
-    path('socities/', Socities),
+    path('socities/', Socities.as_view()),
     path('departments/', Departments),
     path('foodcourts/', FoodCourts),
     path('placestovisit/', PlacesToVisit),
