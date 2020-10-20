@@ -1,18 +1,19 @@
 from django.urls import path, include
 from .views import (
-Clubs,
-Sports,
-Shops,
-Socities,
-Departments,
-FoodCourts,
-PlacesToVisit,
-Events,
-Hostels
+    Clubs,
+    Sports,
+    Shops,
+    Socities,
+    Departments,
+    FoodCourts,
+    PlacesToVisit,
+    Events,
+    Hostels
 
 )
+
 urlpatterns = [
-    path('clubs/', Clubs),
+    path('clubs/', Clubs.as_view()),
     path('sports/', Sports),
     path('shops/', Shops),
     path('socities/', Socities),
@@ -21,5 +22,4 @@ urlpatterns = [
     path('placestovisit/', PlacesToVisit),
     path('events/', Events),
     path('hostels/', Hostels)
-
 ]
