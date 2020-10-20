@@ -1,6 +1,13 @@
 from rest_framework import serializers
-from .models import Society, VicePresidentSociety, PresidentSociety, Sport, Hostel, Shop, PlaceToVisit, Department, Event, FoodCourt
+from .models import Society, VicePresidentSociety, PresidentSociety, Sport, Hostel, Shop, PlaceToVisit, Department, \
+    Event, \
+    FoodCourt, UserUpload
 
+
+class UserUploadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserUpload
+        fields = '__all__'
 
 
 class FoodCourtSerializer(serializers.ModelSerializer):

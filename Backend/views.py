@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from .models import Club
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
-from .models import Society, Sport, Shop, Hostel, Department, PlaceToVisit, Event, FoodCourt
+from .models import Society, Sport, Shop, Hostel, Department, PlaceToVisit, UserUpload, Event, FoodCourt
 from .serializers import (SocietySerializer,
                           SportSerializer,
                           ShopSerializer,
@@ -10,8 +10,8 @@ from .serializers import (SocietySerializer,
                           HostelSerializer,
                           FoodCourtSerializer,
                           EventSerializer,
+                          UserUploadSerializer,
                           PlaceToVisitSerializer)
-from .models import UserUpload
 from rest_framework import status
 
 
@@ -89,12 +89,18 @@ class Departments(ListAPIView):
     serializer_class = DepartmentSerializer
 
 
-class uploadImage(APIView):
+class Posts(ListAPIView):
+    """Get List of all the Posts"""
+    queryset = UserUpload.objects.all()
+    serializer_class = UserUploadSerializer
+
+
+class UploadImage(APIView):
     """Upload Image of user"""
 
-    def post(self):
+    def post(self, request):
         try:
-            data = self.request.POST
+            data = request.data
             userId = data['userId']
             imageUrl = data['imageUrl']
             userName = data['userName']
@@ -119,7 +125,8 @@ class uploadImage(APIView):
                     "userEmail": post.userEmail
                 }
             }, status=status.HTTP_202_ACCEPTED)
-        except:
+        except Exception as e:
+            print(e)
             """Return Error when post is not created"""
             return Response({
                 "message": "error",

@@ -13,7 +13,8 @@ from .models import (
     Sport,
     Club,
     FoodCourt,
-    Department
+    Department,
+    UserUpload
 )
 
 admin.site.register([
@@ -29,5 +30,6 @@ admin.site.register([
     Club,
     FoodCourt,
     Department,
-    Hostel
+    Hostel,
+    UserUpload
 ])

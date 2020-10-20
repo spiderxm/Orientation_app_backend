@@ -8,8 +8,9 @@ from .views import (
     FoodCourts,
     PlacesToVisit,
     Events,
-    Hostels
-
+    Hostels,
+    UploadImage,
+    Posts
 )
 
 urlpatterns = [
@@ -21,5 +22,7 @@ urlpatterns = [
     path('foodcourts/', FoodCourts.as_view()),
     path('placestovisit/', PlacesToVisit.as_view()),
     path('events/', Events.as_view()),
-    path('hostels/', Hostels.as_view())
+    path('hostels/', Hostels.as_view()),
+    path('userposts/', Posts.as_view()),
+    path('uploadimage/', UploadImage.as_view())
 ]
