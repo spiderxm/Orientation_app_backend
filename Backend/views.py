@@ -2,8 +2,16 @@ from rest_framework.views import APIView
 from .models import Club
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
-from .models import Society, Sport
-from .serializers import SocietySerializer, SportSerializer
+from .models import Society, Sport, Shop, Hostel, Department, PlaceToVisit, Event, FoodCourt
+from .serializers import (SocietySerializer,
+                          SportSerializer,
+                          ShopSerializer,
+                          DepartmentSerializer,
+                          HostelSerializer,
+                          FoodCourtSerializer,
+                          EventSerializer,
+                          PlaceToVisitSerializer)
+
 
 class Clubs(APIView):
     """Get list of all Clubs"""
@@ -43,29 +51,35 @@ class Sports(ListAPIView):
     serializer_class = SportSerializer
 
 
-
-def Hostels(request):
+class Hostels(ListAPIView):
     """Get List of all Hostels"""
-    pass
+    queryset = Hostel.objects.all()
+    serializer_class = HostelSerializer
 
 
-def Events(request):
+class Events(ListAPIView):
     """Get List of all events"""
-    pass
+    serializer_class = EventSerializer
+    queryset = Event.objects.all()
 
-
-def FoodCourts(request):
+class FoodCourts(ListAPIView):
     """Get Lists of all Food Courts"""
-    pass
+    serializer_class = FoodCourtSerializer
+    queryset = FoodCourt.objects.all()
 
-
-def PlacesToVisit(request):
+class PlacesToVisit(ListAPIView):
     """Get List of all places to visit nearby NIT Hamirpur"""
+    queryset = PlaceToVisit.objects.all()
+    serializer_class = PlaceToVisitSerializer
 
 
-def Shops(request):
-    pass
+class Shops(ListAPIView):
+    """Get List of all the Shops"""
+    queryset = Shop.objects.all()
+    serializer_class = ShopSerializer
 
 
-def Departments(request):
-    pass
+class Departments(ListAPIView):
+    """Get Lists of all the Departments"""
+    queryset = Department.objects.all()
+    serializer_class = DepartmentSerializer

@@ -15,11 +15,11 @@ from .views import (
 urlpatterns = [
     path('clubs/', Clubs.as_view()),
     path('sports/', Sports.as_view()),
-    path('shops/', Shops),
+    path('shops/', Shops.as_view()),
     path('socities/', Socities.as_view()),
-    path('departments/', Departments),
-    path('foodcourts/', FoodCourts),
-    path('placestovisit/', PlacesToVisit),
-    path('events/', Events),
-    path('hostels/', Hostels)
+    path('departments/', Departments.as_view()),
+    path('foodcourts/', FoodCourts.as_view()),
+    path('placestovisit/', PlacesToVisit.as_view()),
+    path('events/', Events.as_view()),
+    path('hostels/', Hostels.as_view())
 ]

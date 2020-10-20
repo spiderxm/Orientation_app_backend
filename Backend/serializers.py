@@ -1,11 +1,49 @@
 from rest_framework import serializers
-from .models import Society, VicePresidentSociety, PresidentSociety, Sport
+from .models import Society, VicePresidentSociety, PresidentSociety, Sport, Hostel, Shop, PlaceToVisit, Department, Event, FoodCourt
+
+
+
+class FoodCourtSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FoodCourt
+        fields = '__all__'
+
+
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = '__all__'
+
+
+class ShopSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Shop
+        fields = '__all__'
+
+
+class DepartmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Department
+        fields = '__all__'
+
+
+class PlaceToVisitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PlaceToVisit
+        fields = '__all__'
+
+
+class HostelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Hostel
+        fields = '__all__'
 
 
 class SportSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sport
         fields = '__all__'
+
 
 class VicePresidentSocietySerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,4 +64,3 @@ class SocietySerializer(serializers.ModelSerializer):
     class Meta:
         model = Society
         fields = ['id', 'description', 'SocietyName', 'imageUrl', 'President', 'VicePresident']
-
