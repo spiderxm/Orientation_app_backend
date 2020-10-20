@@ -11,6 +11,8 @@ from .serializers import (SocietySerializer,
                           FoodCourtSerializer,
                           EventSerializer,
                           PlaceToVisitSerializer)
+from .models import UserUpload
+from rest_framework import status
 
 
 class Clubs(APIView):
@@ -62,10 +64,12 @@ class Events(ListAPIView):
     serializer_class = EventSerializer
     queryset = Event.objects.all()
 
+
 class FoodCourts(ListAPIView):
     """Get Lists of all Food Courts"""
     serializer_class = FoodCourtSerializer
     queryset = FoodCourt.objects.all()
+
 
 class PlacesToVisit(ListAPIView):
     """Get List of all places to visit nearby NIT Hamirpur"""
@@ -83,3 +87,41 @@ class Departments(ListAPIView):
     """Get Lists of all the Departments"""
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
+
+
+class uploadImage(APIView):
+    """Upload Image of user"""
+
+    def post(self):
+        try:
+            data = self.request.POST
+            userId = data['userId']
+            imageUrl = data['imageUrl']
+            userName = data['userName']
+            description = data['description']
+            email = data['email']
+            post = UserUpload.objects.create(
+                userId=userId,
+                userName=userName,
+                description=description,
+                userEmail=email,
+                imageUrl=imageUrl
+            )
+            post.save()
+            return Response({
+                "message": "Post created successfully",
+                "post": {
+                    "postId": post.id,
+                    "userId": post.userId,
+                    "imageUrl": post.imageUrl,
+                    "userName": post.userName,
+                    "timeOfUpload": post.timeOfUpload,
+                    "userEmail": post.userEmail
+                }
+            }, status=status.HTTP_202_ACCEPTED)
+        except:
+            """Return Error when post is not created"""
+            return Response({
+                "message": "error",
+                "detail": "Please try again later."
+            }, status=status.HTTP_400_BAD_REQUEST)

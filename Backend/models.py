@@ -2,6 +2,19 @@ from django.db import models
 import uuid
 
 
+class UserUpload(models.Model):
+    id = models.CharField(max_length=256, primary_key=True, default=uuid.uuid4)
+    userId = models.CharField(max_length=256)
+    userName = models.CharField(max_length=256, null=False)
+    imageUrl = models.URLField(null=False)
+    userEmail = models.EmailField(null=False)
+    description = models.TextField(max_length=200)
+    timeOfUpload = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.userName + " " + self.id
+
+
 class PresidentClub(models.Model):
     presidentId = models.CharField(default=uuid.uuid4, primary_key=True, max_length=256)
     name = models.TextField(null=False, max_length=256)
