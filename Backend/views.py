@@ -94,6 +94,8 @@ class Posts(ListAPIView):
     queryset = UserUpload.objects.all()
     serializer_class = UserUploadSerializer
 
+    def get_queryset(self):
+        return UserUpload.objects.all().order_by("-timeOfUpload")
 
 class UploadImage(APIView):
     """Upload Image of user"""
@@ -101,17 +103,22 @@ class UploadImage(APIView):
     def post(self, request):
         try:
             data = request.data
+            print(data)
             userId = data['userId']
             imageUrl = data['imageUrl']
             userName = data['userName']
             description = data['description']
             email = data['email']
+            latitude = data['latitude']
+            longitude = data['longitude']
             post = UserUpload.objects.create(
                 userId=userId,
                 userName=userName,
                 description=description,
                 userEmail=email,
-                imageUrl=imageUrl
+                imageUrl=imageUrl,
+                latitude=latitude,
+                longitude=longitude
             )
             post.save()
             return Response({

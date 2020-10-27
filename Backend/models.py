@@ -10,6 +10,8 @@ class UserUpload(models.Model):
     userEmail = models.EmailField(null=False)
     description = models.TextField(max_length=200)
     timeOfUpload = models.DateTimeField(auto_now=True)
+    latitude = models.DecimalField(default=0, decimal_places=15, max_digits=20)
+    longitude = models.DecimalField(default=0, decimal_places=15, max_digits=20)
 
     def __str__(self):
         return self.userName + " " + self.id
