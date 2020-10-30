@@ -97,6 +97,7 @@ class Posts(ListAPIView):
     def get_queryset(self):
         return UserUpload.objects.all().order_by("-timeOfUpload")
 
+
 class UploadImage(APIView):
     """Upload Image of user"""
 
