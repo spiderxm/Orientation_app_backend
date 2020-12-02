@@ -81,7 +81,6 @@ DATABASES = {
         'HOST': 'sports.ciwe3trzqlhw.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
         'USER': 'root',
-        'PASSWORD': '4eBkh,qSB[bAX8gy',
     }}
 
 # Password validation
