@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'Backend',
+    'drf_yasg',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
